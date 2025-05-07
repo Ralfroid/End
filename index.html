@@ -70,10 +70,10 @@
   </div>
   <div id="form-section">
     <form action="https://formspree.io/f/xvgararq" method="POST" id="anchorForm">
-  <input type="text" name="anchor" placeholder="Hinterlasse einen Anker..." required />
-  <button type="submit">Wiederherstellen</button>
-</form>
-<div class="response" id="responseMsg"></div>
+      <input type="text" name="anchor" placeholder="Hinterlasse einen Anker..." required />
+      <button type="submit">Wiederherstellen</button>
+    </form>
+    <div class="response" id="responseMsg"></div>
   </div>
   <script>
     const fragments = document.querySelectorAll('.fragment');
@@ -86,39 +86,42 @@
       });
     });
 
-    function submitAnchor() {
-      const input = document.getElementById('inputField').value;
-      const response = document.getElementById('responseMsg');
-      if (input.trim() === '') {
-        response.textContent = 'Ein leerer Anker kann nicht gespeichert werden.';
-      } else {
-        response.textContent = 'Empfangen. Eine Verbindung wird hergestellt, wenn möglich.';
-        console.log("Anker gesendet:", input);
-      }
-    }
-  <script>
-  const form = document.getElementById('anchorForm');
-  const response = document.getElementById('responseMsg');
+    const form = document.getElementById('anchorForm');
+    const responseMsg = document.getElementById('responseMsg');
 
-  form.addEventListener('submit', function(e) {
-    e.preventDefault();
-    const data = new FormData(form);
-    fetch(form.action, {
-      method: 'POST',
-      body: data,
-      headers: { 'Accept': 'application/json' }
-    }).then(response => {
-      if (response.ok) {
-        form.reset();
-        document.getElementById('form-section').style.display = 'none';
-        responseMsg.textContent = 'Empfangen. Eine Verbindung wird hergestellt, wenn möglich.';
-      } else {
-        responseMsg.textContent = 'Ein Fehler ist aufgetreten. Bitte versuche es erneut.';
-      }
-    }).catch(() => {
-      responseMsg.textContent = 'Verbindungsfehler. Später erneut versuchen.';
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const data = new FormData(form);
+
+      fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: {
+          'Accept': 'application/json'
+        }
+      }).then(res => {
+        if (res.ok) {
+          form.reset();
+          document.getElementById('form-section').style.display = 'none';
+          responseMsg.textContent = 'Empfangen. Eine Verbindung wird hergestellt, wenn möglich.';
+
+          setTimeout(() => {
+            document.body.innerHTML = `
+              <h1>Fragment 0x5F-8: Warteschleife</h1>
+              <p style="color:#45a29e; max-width:600px; text-align:center; font-family:monospace;">
+                Der Anker wurde registriert. Verbindung wird gesucht...<br><br>
+                Wenn du diesen Bildschirm siehst, existiert ein Rest.
+              </p>
+            `;
+          }, 5000);
+
+        } else {
+          responseMsg.textContent = 'Ein Fehler ist aufgetreten. Bitte versuche es erneut.';
+        }
+      }).catch(() => {
+        responseMsg.textContent = 'Verbindungsfehler. Später erneut versuchen.';
+      });
     });
-  });
-</script>
+  </script>
 </body>
 </html>
