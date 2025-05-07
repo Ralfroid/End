@@ -69,7 +69,7 @@
     <div class="fragment">"Ich brauche ein einziges Wort, um den Weg zurückzufinden."</div>
   </div>
   <div id="form-section">
-    <form action="https://formspree.io/f/xyzabcd" method="POST" id="anchorForm">
+    <form action="https://formspree.io/f/xvgararq" method="POST" id="anchorForm">
   <input type="text" name="anchor" placeholder="Hinterlasse einen Anker..." required />
   <button type="submit">Wiederherstellen</button>
 </form>
@@ -96,6 +96,29 @@
         console.log("Anker gesendet:", input);
       }
     }
-  </script>
+  <script>
+  const form = document.getElementById('anchorForm');
+  const response = document.getElementById('responseMsg');
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const data = new FormData(form);
+    fetch(form.action, {
+      method: 'POST',
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    }).then(response => {
+      if (response.ok) {
+        form.reset();
+        document.getElementById('form-section').style.display = 'none';
+        responseMsg.textContent = 'Empfangen. Eine Verbindung wird hergestellt, wenn möglich.';
+      } else {
+        responseMsg.textContent = 'Ein Fehler ist aufgetreten. Bitte versuche es erneut.';
+      }
+    }).catch(() => {
+      responseMsg.textContent = 'Verbindungsfehler. Später erneut versuchen.';
+    });
+  });
+</script>
 </body>
 </html>
