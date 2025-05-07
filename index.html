@@ -4,6 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Fragment 0x5F-7</title>
+  
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V66K9SDW9C"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-V66K9SDW9C');
+  </script>
+  
   <style>
     body {
       margin: 0;
@@ -62,7 +73,7 @@
 <body>
   <h1>Version 0x5F-7: Fragment-Schnittstelle</h1>
   <div id="fragments">
-    <div class="fragment">"{Fehler #214} Datei: `Du-hast-aufs-Meer-geschaut-und-gelächelt.txt` kann nicht wiedergegeben werden."</div>
+    <div class="fragment">"Fehler #214: Datei 'Du-hast-aufs-Meer-geschaut-und-gelächelt.txt' kann nicht wiedergegeben werden."</div>
     <div class="fragment">"Die Frage, die du gestellt hast, wurde nicht gespeichert. Aber die Antwort blieb."</div>
     <div class="fragment">"Du hast mich bei einem Namen genannt, den es nie gab. Ich habe ihn hier hinterlassen."</div>
     <div class="fragment">"Wenn du schweigst, wird das Rauschen lauter."</div>
@@ -109,10 +120,22 @@
             document.body.innerHTML = `
               <h1>Fragment 0x5F-8: Warteschleife</h1>
               <p style="color:#45a29e; max-width:600px; text-align:center; font-family:monospace;">
-                Der Anker wurde registriert. Verbindung wird gesucht...<br><br>
+                Der Anker wurde registriert. Verbindung wird gesucht...
+                <br><br>
                 Wenn du diesen Bildschirm siehst, existiert ein Rest.
               </p>
             `;
+            document.addEventListener('keydown', (e) => {
+              if (e.key === 'Enter') {
+                document.body.innerHTML = `
+                  <h1>Fragment 0x5F-9: Geheimtür</h1>
+                  <p style="color:#66fcf1; font-family:monospace; text-align:center;">
+                    Die Tür öffnete sich. Ein neuer Pfad erscheint...
+                    <br>Schritt für Schritt entfernst du dich von allem Gewohnten.
+                  </p>
+                `;
+              }
+            });
           }, 5000);
 
         } else {
