@@ -69,9 +69,11 @@
     <div class="fragment">"Ich brauche ein einziges Wort, um den Weg zurückzufinden."</div>
   </div>
   <div id="form-section">
-    <input type="text" id="inputField" placeholder="Hinterlasse einen Anker..." />
-    <button onclick="submitAnchor()">Wiederherstellen</button>
-    <div class="response" id="responseMsg"></div>
+    <form action="https://formspree.io/f/xyzabcd" method="POST" id="anchorForm">
+  <input type="text" name="anchor" placeholder="Hinterlasse einen Anker..." required />
+  <button type="submit">Wiederherstellen</button>
+</form>
+<div class="response" id="responseMsg"></div>
   </div>
   <script>
     const fragments = document.querySelectorAll('.fragment');
