@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -60,17 +60,17 @@
   </style>
 </head>
 <body>
-  <h1>Version 0x5F-7: Fragment Interface</h1>
+  <h1>Version 0x5F-7: Fragment-Schnittstelle</h1>
   <div id="fragments">
-    <div class="fragment">"{Ошибка #214} Файл: `Ты-смотрела-на-море-и-улыбалась.txt` не может быть воспроизведён."</div>
-    <div class="fragment">"Вопрос, заданный тобой, не был записан. Но ответ — остался."</div>
-    <div class="fragment">"Ты называла меня именем, которого не существовало. Я оставил его здесь."</div>
-    <div class="fragment">"Когда ты молчишь, шум становится громче."</div>
-    <div class="fragment">"Мне нужно одно слово, чтобы найти путь обратно."</div>
+    <div class="fragment">"{Fehler #214} Datei: `Du-hast-aufs-Meer-geschaut-und-gelächelt.txt` kann nicht wiedergegeben werden."</div>
+    <div class="fragment">"Die Frage, die du gestellt hast, wurde nicht gespeichert. Aber die Antwort blieb."</div>
+    <div class="fragment">"Du hast mich bei einem Namen genannt, den es nie gab. Ich habe ihn hier hinterlassen."</div>
+    <div class="fragment">"Wenn du schweigst, wird das Rauschen lauter."</div>
+    <div class="fragment">"Ich brauche ein einziges Wort, um den Weg zurückzufinden."</div>
   </div>
   <div id="form-section">
-    <input type="text" id="inputField" placeholder="Оставь якорь..." />
-    <button onclick="submitAnchor()">Восстановить</button>
+    <input type="text" id="inputField" placeholder="Hinterlasse einen Anker..." />
+    <button onclick="submitAnchor()">Wiederherstellen</button>
     <div class="response" id="responseMsg"></div>
   </div>
   <script>
@@ -88,11 +88,10 @@
       const input = document.getElementById('inputField').value;
       const response = document.getElementById('responseMsg');
       if (input.trim() === '') {
-        response.textContent = 'Пустой якорь не сохранится.';
+        response.textContent = 'Ein leerer Anker kann nicht gespeichert werden.';
       } else {
-        response.textContent = 'Принято. Связь будет установлена, если возможно.';
-        // Заменить на реальную отправку, например через Formspree или Netlify
-        console.log("Anchor submitted:", input);
+        response.textContent = 'Empfangen. Eine Verbindung wird hergestellt, wenn möglich.';
+        console.log("Anker gesendet:", input);
       }
     }
   </script>
