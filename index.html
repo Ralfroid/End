@@ -3,65 +3,54 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Der verschlossene Kodex</title>
-  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap" rel="stylesheet">
+  <title>Pfad des Lichts</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cardo&display=swap" rel="stylesheet">
   <style>
     body {
-      background: #1a1a1a url('https://www.transparenttextures.com/patterns/old-wall.png');
-      color: #f0e6d2;
-      font-family: 'IM Fell English', serif;
+      margin: 0;
       padding: 2rem;
-      text-align: center;
-    }
-    .container {
-      max-width: 600px;
-      margin: auto;
-      background: rgba(0,0,0,0.6);
-      padding: 2rem;
-      border-radius: 10px;
-      border: 1px solid #a58c65;
+      background: #fdf6e3;
+      font-family: 'Cardo', serif;
+      color: #333;
     }
     h1 {
+      text-align: center;
       font-size: 2rem;
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
     }
-    blockquote {
-      font-size: 1.2rem;
-      margin: 1.5rem 0;
-      font-style: italic;
+    .content {
+      max-width: 700px;
+      margin: auto;
+      padding: 2rem;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    .verse-block {
+      margin-top: 1.5rem;
     }
     input, button {
-      font-family: inherit;
+      font-family: 'Cardo', serif;
+      font-size: 1rem;
       padding: 0.5rem;
-      margin: 0.5rem 0;
-      border: none;
+      margin-top: 0.5rem;
+      border: 1px solid #ccc;
       border-radius: 5px;
     }
-    input {
-      width: 80%;
-    }
     button {
-      background: #a58c65;
-      color: #1a1a1a;
+      background: #e0e0c0;
       cursor: pointer;
     }
-    .hidden {
-      display: none;
+    .hidden { display: none; }
+    .fade-in {
+      animation: fadeIn 1.5s ease forwards;
     }
-    footer {
-      margin-top: 2rem;
-      font-size: 0.8rem;
-    }
-    .reward {
-      margin-top: 2rem;
-      font-size: 1rem;
-      background: #333;
-      padding: 1rem;
-      border-radius: 8px;
-      border: 1px dashed #a58c65;
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
     }
   </style>
-  <!-- Google Tag -->
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-V66K9SDW9C"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -71,77 +60,64 @@
   </script>
 </head>
 <body>
-  <div class="container">
-    <h1>Der verschlossene Kodex</h1>
-    <blockquote>
-      „Denn viele sind berufen, aber wenige sind auserwählt.“
-    </blockquote>
-    <p><em>Weißt du, wo das steht? Gib Kapitel und Vers ein (z. B. 22:14).</em></p>
-    <input type="text" id="verseInput" placeholder="Kapitel:Vers">
-    <button onclick="checkVerse()">Entsperren</button>
+  <div class="content">
+    <h1>Pfad des Lichts</h1>
+    <div id="step1" class="fade-in">
+      <p>„Der Herr sprach über die Wahrheit, die befreit. Finde diesen Vers.“</p>
+      <input id="input1" placeholder="z. B. Johannes 8:32">
+      <button onclick="checkStep1()">Antwort</button>
+      <p id="feedback1" class="verse-block"></p>
+    </div>
 
-    <div id="nextFragment" class="hidden">
-      <blockquote>
-        „Und ihr werdet die Wahrheit erkennen, und die Wahrheit wird euch frei machen.“
-      </blockquote>
-      <p><em>Erkennst du die Quelle dieses Verses?</em></p>
-      <input type="text" id="verseInput2" placeholder="Kapitel:Vers">
-      <button onclick="checkVerse2()">Weiter</button>
+    <div id="step2" class="hidden fade-in">
+      <p>„Gesegnet sind die, die Frieden stiften... Wo steht das?“</p>
+      <input id="input2" placeholder="z. B. Matthäus 5:9">
+      <button onclick="checkStep2()">Antwort</button>
+      <p id="feedback2" class="verse-block"></p>
+    </div>
 
-      <div id="finalStage" class="hidden">
-        <blockquote>
-          „Selig sind, die nicht sehen und doch glauben.“
-        </blockquote>
-        <p><strong>Willst du einen Schwur ablegen oder eine Frage stellen?</strong></p>
-        <form action="https://formspree.io/f/xvgararq" method="POST">
-          <input type="text" name="message" placeholder="Schreibe hier..." required>
-          <button type="submit">Senden</button>
-        </form>
+    <div id="step3" class="hidden fade-in">
+      <p>„Suche den längsten Psalm und finde seinen Vers, der das Wort ‚Lampe‘ enthält.“</p>
+      <input id="input3" placeholder="z. B. Psalm 119:105">
+      <button onclick="checkStep3()">Antwort</button>
+      <p id="feedback3" class="verse-block"></p>
+    </div>
 
-        <div id="riddleStage" class="reward">
-          <p><strong>Bonus-Rätsel:</strong> „Ich bin der Anfang der Weisheit. Mich zu fürchten ist der Anfang des Verstehens. Was bin ich?“</p>
-          <input type="text" id="riddleInput" placeholder="Antwort hier...">
-          <button onclick="checkRiddle()">Antwort prüfen</button>
-
-          <div id="rewardMessage" class="hidden">
-            <p><strong>Richtig!</strong> Du bist bereit für die nächste Offenbarung.</p>
-            <a href="#" onclick="alert('Du wirst kontaktiert werden... oder du findest bald mehr. Halte Ausschau nach Zeichen.')">Weiter zur Prophezeiung</a>
-          </div>
-        </div>
-
-      </div>
+    <div id="finish" class="hidden fade-in">
+      <p><strong>Du bist den Pfad des Lichts entlang gegangen.</strong></p>
+      <p>„Die Furcht des Herrn ist der Anfang der Erkenntnis.“ – Sprüche 1:7</p>
+      <p><a href="https://www.bibleserver.com">Zur Bibelserver →</a></p>
     </div>
   </div>
 
-  <footer>
-    Fragmente der Wahrheit © verborgen im Wort
-  </footer>
-
   <script>
-    function checkVerse() {
-      const input = document.getElementById('verseInput').value.trim();
-      if (input === '22:14') {
-        document.getElementById('nextFragment').classList.remove('hidden');
+    function checkStep1() {
+      const val = document.getElementById('input1').value.trim().toLowerCase();
+      if (val.includes("joh") && val.includes("8:32")) {
+        document.getElementById('feedback1').innerHTML = "„Ihr werdet die Wahrheit erkennen, und die Wahrheit wird euch frei machen.“ – Johannes 8:32";
+        document.getElementById('step2').classList.remove('hidden');
       } else {
-        alert('Das scheint nicht der richtige Vers zu sein. Lies weiter…');
+        document.getElementById('feedback1').innerHTML = "Das scheint nicht richtig zu sein. Probiere es erneut.";
       }
     }
 
-    function checkVerse2() {
-      const input = document.getElementById('verseInput2').value.trim();
-      if (input === '8:32') {
-        document.getElementById('finalStage').classList.remove('hidden');
+    function checkStep2() {
+      const val = document.getElementById('input2').value.trim().toLowerCase();
+      if (val.includes("matt") && val.includes("5:9")) {
+        document.getElementById('feedback2').innerHTML = "„Selig sind die Friedfertigen; denn sie werden Gottes Kinder heißen.“ – Matthäus 5:9";
+        document.getElementById('step3').classList.remove('hidden');
       } else {
-        alert('Noch nicht die Wahrheit… versuche es erneut.');
+        document.getElementById('feedback2').innerHTML = "Noch nicht ganz. Versuche es weiter.";
       }
     }
 
-    function checkRiddle() {
-      const answer = document.getElementById('riddleInput').value.trim().toLowerCase();
-      if (answer.includes('gottesfurcht') || answer.includes('gottesfurcht.')) {
-        document.getElementById('rewardMessage').classList.remove('hidden');
+    function checkStep3() {
+      const val = document.getElementById('input3').value.trim().toLowerCase();
+      if (val.includes("119") && val.includes("105")) {
+        document.getElementById('feedback3').innerHTML = "„Dein Wort ist meines Fußes Leuchte und ein Licht auf meinem Weg.“ – Psalm 119:105";
+        document.getElementById('finish').classList.remove('hidden');
       } else {
-        alert('Noch nicht richtig. Denk an Sprüche 9:10.');
+        document.getElementById('feedback3').innerHTML = "Falscher Vers? Lies Psalm 119 sorgfältig...";
       }
     }
   </script>
