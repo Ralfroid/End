@@ -63,30 +63,35 @@
   <div class="content">
     <h1>Pfad des Lichts</h1>
     <div id="step1" class="fade-in">
-      <p>„Der Herr sprach über die Wahrheit, die befreit. Finde diesen Vers.“</p>
+      <p>🕯️ Eine verschlossene Truhe erscheint. Ein Hinweis ist eingraviert:</p>
+      <p><em>„Nur wer die Wahrheit kennt, wird die Freiheit finden.“</em></p>
+      <p>🔎 Finde den Vers, auf den sich dieser Spruch bezieht.</p>
       <input id="input1" placeholder="z. B. Johannes 8:32">
-      <button onclick="checkStep1()">Antwort</button>
+      <button onclick="checkStep1()">Entsperren</button>
       <p id="feedback1" class="verse-block"></p>
     </div>
 
     <div id="step2" class="hidden fade-in">
-      <p>„Gesegnet sind die, die Frieden stiften... Wo steht das?“</p>
+      <p>🪶 Ein altes Manuskript entfaltet sich. Darauf steht:</p>
+      <p><em>„Frieden ist nicht das Ziel – es ist der Weg.“</em></p>
+      <p>🔎 Finde den Vers, in dem Jesus die Friedensstifter segnet.</p>
       <input id="input2" placeholder="z. B. Matthäus 5:9">
-      <button onclick="checkStep2()">Antwort</button>
+      <button onclick="checkStep2()">Lesen</button>
       <p id="feedback2" class="verse-block"></p>
     </div>
 
     <div id="step3" class="hidden fade-in">
-      <p>„Suche den längsten Psalm und finde seinen Vers, der das Wort ‚Lampe‘ enthält.“</p>
+      <p>📜 In einem dunklen Gang erscheint eine Inschrift:</p>
+      <p><em>„Wenn du nicht weißt, wohin du gehst, nimm dieses Licht mit dir.“</em></p>
+      <p>🔎 Welcher Vers nennt Gottes Wort eine Lampe?</p>
       <input id="input3" placeholder="z. B. Psalm 119:105">
-      <button onclick="checkStep3()">Antwort</button>
+      <button onclick="checkStep3()">Weitergehen</button>
       <p id="feedback3" class="verse-block"></p>
     </div>
 
     <div id="finish" class="hidden fade-in">
-      <p><strong>Du bist den Pfad des Lichts entlang gegangen.</strong></p>
-      <p>„Die Furcht des Herrn ist der Anfang der Erkenntnis.“ – Sprüche 1:7</p>
-      <p><a href="https://www.bibleserver.com">Zur Bibelserver →</a></p>
+      <p>✨ Du hast den verborgenen Pfad erkannt und das Licht gesehen.</p>
+      <p><strong>„Die Furcht des Herrn ist der Anfang der Erkenntnis.“ – Sprüche 1:7</strong></p>
     </div>
   </div>
 
@@ -94,30 +99,30 @@
     function checkStep1() {
       const val = document.getElementById('input1').value.trim().toLowerCase();
       if (val.includes("joh") && val.includes("8:32")) {
-        document.getElementById('feedback1').innerHTML = "„Ihr werdet die Wahrheit erkennen, und die Wahrheit wird euch frei machen.“ – Johannes 8:32";
+        document.getElementById('feedback1').innerHTML = "🔓 <em>„Ihr werdet die Wahrheit erkennen, und die Wahrheit wird euch frei machen.“ – Johannes 8:32</em>";
         document.getElementById('step2').classList.remove('hidden');
       } else {
-        document.getElementById('feedback1').innerHTML = "Das scheint nicht richtig zu sein. Probiere es erneut.";
+        document.getElementById('feedback1').innerHTML = "❌ Das scheint nicht richtig zu sein. Probiere es erneut.";
       }
     }
 
     function checkStep2() {
       const val = document.getElementById('input2').value.trim().toLowerCase();
       if (val.includes("matt") && val.includes("5:9")) {
-        document.getElementById('feedback2').innerHTML = "„Selig sind die Friedfertigen; denn sie werden Gottes Kinder heißen.“ – Matthäus 5:9";
+        document.getElementById('feedback2').innerHTML = "📖 <em>„Selig sind die Friedfertigen; denn sie werden Gottes Kinder heißen.“ – Matthäus 5:9</em>";
         document.getElementById('step3').classList.remove('hidden');
       } else {
-        document.getElementById('feedback2').innerHTML = "Noch nicht ganz. Versuche es weiter.";
+        document.getElementById('feedback2').innerHTML = "❌ Noch nicht ganz. Versuche es weiter.";
       }
     }
 
     function checkStep3() {
       const val = document.getElementById('input3').value.trim().toLowerCase();
       if (val.includes("119") && val.includes("105")) {
-        document.getElementById('feedback3').innerHTML = "„Dein Wort ist meines Fußes Leuchte und ein Licht auf meinem Weg.“ – Psalm 119:105";
+        document.getElementById('feedback3').innerHTML = "💡 <em>„Dein Wort ist meines Fußes Leuchte und ein Licht auf meinem Weg.“ – Psalm 119:105</em>";
         document.getElementById('finish').classList.remove('hidden');
       } else {
-        document.getElementById('feedback3').innerHTML = "Falscher Vers? Lies Psalm 119 sorgfältig...";
+        document.getElementById('feedback3').innerHTML = "❌ Falscher Vers? Lies Psalm 119 sorgfältig...";
       }
     }
   </script>
