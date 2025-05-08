@@ -1,205 +1,120 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fragment 0x5F-7</title>
-
-  <!-- Google tag (gtag.js) -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Der verschlossene Kodex</title>
+  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #1a1a1a url('https://www.transparenttextures.com/patterns/old-wall.png');
+      color: #f0e6d2;
+      font-family: 'IM Fell English', serif;
+      padding: 2rem;
+      text-align: center;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: rgba(0,0,0,0.6);
+      padding: 2rem;
+      border-radius: 10px;
+      border: 1px solid #a58c65;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    blockquote {
+      font-size: 1.2rem;
+      margin: 1.5rem 0;
+      font-style: italic;
+    }
+    input, button {
+      font-family: inherit;
+      padding: 0.5rem;
+      margin: 0.5rem 0;
+      border: none;
+      border-radius: 5px;
+    }
+    input {
+      width: 80%;
+    }
+    button {
+      background: #a58c65;
+      color: #1a1a1a;
+      cursor: pointer;
+    }
+    .hidden {
+      display: none;
+    }
+    footer {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+    }
+  </style>
+  <!-- Google Tag -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-V66K9SDW9C"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-V66K9SDW9C');
   </script>
-
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #0b0c10;
-      color: #c5c6c7;
-      font-family: 'Courier New', monospace;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-    }
-    h1 {
-      font-size: 1.5rem;
-      color: #66fcf1;
-      margin-bottom: 2rem;
-    }
-    .fragment {
-      margin: 0.5rem 0;
-      padding: 1rem;
-      background-color: #1f2833;
-      border-left: 3px solid #45a29e;
-      width: 80%;
-      max-width: 600px;
-      cursor: pointer;
-      transition: background 0.3s;
-    }
-    .fragment:hover {
-      background-color: #162024;
-    }
-    #form-section {
-      margin-top: 2rem;
-      display: none;
-      flex-direction: column;
-      align-items: center;
-    }
-    input, button {
-      margin-top: 1rem;
-      padding: 0.5rem;
-      background: #0b0c10;
-      border: 1px solid #66fcf1;
-      color: #c5c6c7;
-      font-family: monospace;
-    }
-    input::placeholder {
-      color: #45a29e;
-    }
-    .response {
-      margin-top: 1rem;
-      color: #66fcf1;
-    }
-    .secret-route {
-      color: #45a29e;
-      cursor: pointer;
-      display: none;
-      margin-top: 20px;
-    }
-  </style>
 </head>
 <body>
-  <h1>Version 0x5F-7: Fragment-Schnittstelle</h1>
-  <div id="fragments">
-    <div class="fragment">"Fehler #214: Datei 'Du-hast-aufs-Meer-geschaut-und-gelächelt.txt' kann nicht wiedergegeben werden."</div>
-    <div class="fragment">"Die Frage, die du gestellt hast, wurde nicht gespeichert. Aber die Antwort blieb."</div>
-    <div class="fragment">"Du hast mich bei einem Namen genannt, den es nie gab. Ich habe ihn hier hinterlassen."</div>
-    <div class="fragment">"Wenn du schweigst, wird das Rauschen lauter."</div>
-    <div class="fragment">"Ich brauche ein einziges Wort, um den Weg zurückzufinden."</div>
+  <div class="container">
+    <h1>Der verschlossene Kodex</h1>
+    <blockquote>
+      „Denn viele sind berufen, aber wenige sind auserwählt.“
+    </blockquote>
+    <p><em>Weißt du, wo das steht? Gib Kapitel und Vers ein (z. B. 22:14).</em></p>
+    <input type="text" id="verseInput" placeholder="Kapitel:Vers">
+    <button onclick="checkVerse()">Entsperren</button>
+
+    <div id="nextFragment" class="hidden">
+      <blockquote>
+        „Und ihr werdet die Wahrheit erkennen, und die Wahrheit wird euch frei machen.“
+      </blockquote>
+      <p><em>Erkennst du die Quelle dieses Verses?</em></p>
+      <input type="text" id="verseInput2" placeholder="Kapitel:Vers">
+      <button onclick="checkVerse2()">Weiter</button>
+
+      <div id="finalStage" class="hidden">
+        <blockquote>
+          „Schreibe dies auf: Selig sind die, die glauben und doch nicht sehen.“
+        </blockquote>
+        <p><strong>Willst du einen Schwur ablegen oder eine Frage stellen?</strong></p>
+        <form action="https://formspree.io/f/xvgararq" method="POST">
+          <input type="text" name="message" placeholder="Schreibe hier..." required>
+          <button type="submit">Senden</button>
+        </form>
+      </div>
+    </div>
   </div>
 
-  <div id="secret-section" style="display: none;">
-    <h2>Der geheime Code: 0x9F-1</h2>
-    <p>Gib den Code ein, um den verborgenen Pfad zu finden:</p>
-    <input type="text" id="code-input" placeholder="Gib den Code ein..." />
-    <button id="submit-code">Überprüfen</button>
-    <div id="code-response" class="response"></div>
-  </div>
-
-  <div id="form-section">
-    <form action="https://formspree.io/f/xvgararq" method="POST" id="anchorForm">
-      <input type="text" name="anchor" placeholder="Hinterlasse einen Anker..." required />
-      <button type="submit">Wiederherstellen</button>
-    </form>
-    <div class="response" id="responseMsg"></div>
-  </div>
-
-  <div class="secret-route" id="secret-route">Klick hier, um den geheimen Pfad zu betreten...</div>
+  <footer>
+    Fragmente der Wahrheit © verborgen im Wort
+  </footer>
 
   <script>
-    const fragments = document.querySelectorAll('.fragment');
-    const formSection = document.getElementById('form-section');
-    const secretRoute = document.getElementById('secret-route');
-    const secretSection = document.getElementById('secret-section');
-    const codeInput = document.getElementById('code-input');
-    const submitCodeBtn = document.getElementById('submit-code');
-    const codeResponse = document.getElementById('code-response');
-    let secretPathUnlocked = false;
-
-    // Обработчик нажатия фрагментов
-    fragments.forEach(frag => {
-      frag.addEventListener('click', () => {
-        frag.style.opacity = '0.4';
-        formSection.style.display = 'flex';
-      });
-    });
-
-    // Секретный путь
-    secretRoute.addEventListener('click', () => {
-      if (!secretPathUnlocked) {
-        secretPathUnlocked = true;
-        secretSection.style.display = 'block';
-        secretRoute.textContent = 'Der geheime Pfad ist nun zugänglich...';
-      }
-    });
-
-    // Проверка введенного кода
-    submitCodeBtn.addEventListener('click', () => {
-      const enteredCode = codeInput.value.trim();
-      if (enteredCode === '0x9F-1') {
-        codeResponse.textContent = 'Code erfolgreich! Der Pfad ist nun geöffnet.';
-        codeResponse.style.color = '#66fcf1';
-        setTimeout(() => {
-          document.body.innerHTML = `
-            <h1>Fragment 0x9F-2: Eine neue Dimension</h1>
-            <p style="color:#45a29e; font-family:monospace; text-align:center;">
-              Du hast den Code entschlüsselt! Ein neuer Pfad öffnet sich...
-            </p>
-          `;
-        }, 2000);
+    function checkVerse() {
+      const input = document.getElementById('verseInput').value.trim();
+      if (input === '22:14') {
+        document.getElementById('nextFragment').classList.remove('hidden');
       } else {
-        codeResponse.textContent = 'Falscher Code. Versuch es nochmal.';
-        codeResponse.style.color = '#ff6666';
+        alert('Das scheint nicht der richtige Vers zu sein. Lies weiter…');
       }
-    });
+    }
 
-    // Обработка формы
-    const form = document.getElementById('anchorForm');
-    const responseMsg = document.getElementById('responseMsg');
-
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      const data = new FormData(form);
-
-      fetch(form.action, {
-        method: 'POST',
-        body: data,
-        headers: {
-          'Accept': 'application/json'
-        }
-      }).then(res => {
-        if (res.ok) {
-          form.reset();
-          document.getElementById('form-section').style.display = 'none';
-          responseMsg.textContent = 'Empfangen. Eine Verbindung wird hergestellt, wenn möglich.';
-
-          setTimeout(() => {
-            document.body.innerHTML = `
-              <h1>Fragment 0x5F-8: Warteschleife</h1>
-              <p style="color:#45a29e; max-width:600px; text-align:center; font-family:monospace;">
-                Der Anker wurde registriert. Verbindung wird gesucht...
-                <br><br>
-                Wenn du diesen Bildschirm siehst, existiert ein Rest.
-              </p>
-            `;
-            document.addEventListener('keydown', (e) => {
-              if (e.key === 'Enter') {
-                document.body.innerHTML = `
-                  <h1>Fragment 0x5F-9: Geheimtür</h1>
-                  <p style="color:#66fcf1; font-family:monospace; text-align:center;">
-                    Die Tür öffnete sich. Ein neuer Pfad erscheint...
-                    <br>Schritt für Schritt entfernst du dich von allem Gewohnten.
-                  </p>
-                `;
-              }
-            });
-          }, 5000);
-
-        } else {
-          responseMsg.textContent = 'Ein Fehler ist aufgetreten. Bitte versuche es erneut.';
-        }
-      }).catch(() => {
-        responseMsg.textContent = 'Verbindungsfehler. Später erneut versuchen.';
-      });
-    });
+    function checkVerse2() {
+      const input = document.getElementById('verseInput2').value.trim();
+      if (input === '8:32') {
+        document.getElementById('finalStage').classList.remove('hidden');
+      } else {
+        alert('Noch nicht die Wahrheit… versuche es erneut.');
+      }
+    }
   </script>
 </body>
 </html>
