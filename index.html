@@ -3,128 +3,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pfad des Lichts</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cardo&display=swap" rel="stylesheet">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Biblische Entdeckung</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
   <style>
     body {
+      font-family: 'Roboto', sans-serif;
       margin: 0;
-      padding: 2rem;
-      background: #fdf6e3;
-      font-family: 'Cardo', serif;
+      padding: 0;
+      background-color: #f5f5f5;
       color: #333;
     }
     h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
       text-align: center;
-      font-size: 2rem;
-      margin-bottom: 2rem;
+      margin-top: 50px;
     }
-    .content {
-      max-width: 700px;
-      margin: auto;
-      padding: 2rem;
-      background: #fff;
+    .hidden-message {
+      position: absolute;
+      bottom: 20px;
+      left: 20px;
+      font-size: 1.5rem;
+      color: #f5f5dc;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1s;
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px;
       border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
     }
-    .verse-block {
-      margin-top: 1.5rem;
+    .message-visible {
+      opacity: 1;
     }
-    input, button {
-      font-family: 'Cardo', serif;
+    .message-content {
+      font-weight: bold;
+      font-size: 1.4rem;
+    }
+    .hint {
+      margin-top: 15px;
       font-size: 1rem;
-      padding: 0.5rem;
-      margin-top: 0.5rem;
-      border: 1px solid #ccc;
+      color: #f5f5dc;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 5px;
       border-radius: 5px;
     }
-    button {
-      background: #e0e0c0;
-      cursor: pointer;
-    }
-    .hidden { display: none; }
-    .fade-in {
-      animation: fadeIn 1.5s ease forwards;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
   </style>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V66K9SDW9C"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-V66K9SDW9C');
-  </script>
 </head>
 <body>
+  <h1>Willkommen in der biblischen Entdeckung</h1>
+  
+  <div class="hidden-message">
+    <div class="message-content">
+      Wir sind Nazarener. Kannst du meine wahre Identität enthüllen?
+    </div>
+    <div class="hint">
+      Wenn du das Geheimnis findest, wirst du mehr verstehen. Suche weiter.
+    </div>
+  </div>
+  
   <div class="content">
-    <h1>Pfad des Lichts</h1>
-    <div id="step1" class="fade-in">
-      <p>🕯️ Eine verschlossene Truhe erscheint. Ein Hinweis ist eingraviert:</p>
-      <p><em>„Nur wer die Wahrheit kennt, wird die Freiheit finden.“</em></p>
-      <p>🔎 Finde den Vers, auf den sich dieser Spruch bezieht.</p>
-      <input id="input1" placeholder="z. B. Johannes 8:32">
-      <button onclick="checkStep1()">Entsperren</button>
-      <p id="feedback1" class="verse-block"></p>
-    </div>
-
-    <div id="step2" class="hidden fade-in">
-      <p>🪶 Ein altes Manuskript entfaltet sich. Darauf steht:</p>
-      <p><em>„Frieden ist nicht das Ziel – es ist der Weg.“</em></p>
-      <p>🔎 Finde den Vers, in dem Jesus die Friedensstifter segnet.</p>
-      <input id="input2" placeholder="z. B. Matthäus 5:9">
-      <button onclick="checkStep2()">Lesen</button>
-      <p id="feedback2" class="verse-block"></p>
-    </div>
-
-    <div id="step3" class="hidden fade-in">
-      <p>📜 In einem dunklen Gang erscheint eine Inschrift:</p>
-      <p><em>„Wenn du nicht weißt, wohin du gehst, nimm dieses Licht mit dir.“</em></p>
-      <p>🔎 Welcher Vers nennt Gottes Wort eine Lampe?</p>
-      <input id="input3" placeholder="z. B. Psalm 119:105">
-      <button onclick="checkStep3()">Weitergehen</button>
-      <p id="feedback3" class="verse-block"></p>
-    </div>
-
-    <div id="finish" class="hidden fade-in">
-      <p>✨ Du hast den verborgenen Pfad erkannt und das Licht gesehen.</p>
-      <p><strong>„Die Furcht des Herrn ist der Anfang der Erkenntnis.“ – Sprüche 1:7</strong></p>
-    </div>
+    <p>Hier beginnt deine Reise. Die Bibel ist voll von Geheimnissen und Weisheiten. Bist du bereit, die verborgenen Wahrheiten zu entdecken?</p>
   </div>
 
   <script>
-    function checkStep1() {
-      const val = document.getElementById('input1').value.trim().toLowerCase();
-      if (val.includes("joh") && val.includes("8:32")) {
-        document.getElementById('feedback1').innerHTML = "🔓 <em>„Ihr werdet die Wahrheit erkennen, und die Wahrheit wird euch frei machen.“ – Johannes 8:32</em>";
-        document.getElementById('step2').classList.remove('hidden');
-      } else {
-        document.getElementById('feedback1').innerHTML = "❌ Das scheint nicht richtig zu sein. Probiere es erneut.";
+    // Показываем скрытое сообщение при прокрутке страницы
+    window.addEventListener('scroll', function() {
+      const message = document.querySelector('.hidden-message');
+      if (window.scrollY > 500) { // когда пользователь прокручивает страницу
+        message.classList.add('message-visible'); // текст появляется
       }
-    }
-
-    function checkStep2() {
-      const val = document.getElementById('input2').value.trim().toLowerCase();
-      if (val.includes("matt") && val.includes("5:9")) {
-        document.getElementById('feedback2').innerHTML = "📖 <em>„Selig sind die Friedfertigen; denn sie werden Gottes Kinder heißen.“ – Matthäus 5:9</em>";
-        document.getElementById('step3').classList.remove('hidden');
-      } else {
-        document.getElementById('feedback2').innerHTML = "❌ Noch nicht ganz. Versuche es weiter.";
-      }
-    }
-
-    function checkStep3() {
-      const val = document.getElementById('input3').value.trim().toLowerCase();
-      if (val.includes("119") && val.includes("105")) {
-        document.getElementById('feedback3').innerHTML = "💡 <em>„Dein Wort ist meines Fußes Leuchte und ein Licht auf meinem Weg.“ – Psalm 119:105</em>";
-        document.getElementById('finish').classList.remove('hidden');
-      } else {
-        document.getElementById('feedback3').innerHTML = "❌ Falscher Vers? Lies Psalm 119 sorgfältig...";
-      }
-    }
+    });
   </script>
 </body>
 </html>
