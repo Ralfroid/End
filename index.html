@@ -52,6 +52,14 @@
       margin-top: 2rem;
       font-size: 0.8rem;
     }
+    .reward {
+      margin-top: 2rem;
+      font-size: 1rem;
+      background: #333;
+      padding: 1rem;
+      border-radius: 8px;
+      border: 1px dashed #a58c65;
+    }
   </style>
   <!-- Google Tag -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-V66K9SDW9C"></script>
@@ -82,13 +90,25 @@
 
       <div id="finalStage" class="hidden">
         <blockquote>
-          „Schreibe dies auf: Selig sind die, die glauben und doch nicht sehen.“
+          „Selig sind, die nicht sehen und doch glauben.“
         </blockquote>
         <p><strong>Willst du einen Schwur ablegen oder eine Frage stellen?</strong></p>
         <form action="https://formspree.io/f/xvgararq" method="POST">
           <input type="text" name="message" placeholder="Schreibe hier..." required>
           <button type="submit">Senden</button>
         </form>
+
+        <div id="riddleStage" class="reward">
+          <p><strong>Bonus-Rätsel:</strong> „Ich bin der Anfang der Weisheit. Mich zu fürchten ist der Anfang des Verstehens. Was bin ich?“</p>
+          <input type="text" id="riddleInput" placeholder="Antwort hier...">
+          <button onclick="checkRiddle()">Antwort prüfen</button>
+
+          <div id="rewardMessage" class="hidden">
+            <p><strong>Richtig!</strong> Du bist bereit für die nächste Offenbarung.</p>
+            <a href="#" onclick="alert('Du wirst kontaktiert werden... oder du findest bald mehr. Halte Ausschau nach Zeichen.')">Weiter zur Prophezeiung</a>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -113,6 +133,15 @@
         document.getElementById('finalStage').classList.remove('hidden');
       } else {
         alert('Noch nicht die Wahrheit… versuche es erneut.');
+      }
+    }
+
+    function checkRiddle() {
+      const answer = document.getElementById('riddleInput').value.trim().toLowerCase();
+      if (answer.includes('gottesfurcht') || answer.includes('gottesfurcht.')) {
+        document.getElementById('rewardMessage').classList.remove('hidden');
+      } else {
+        alert('Noch nicht richtig. Denk an Sprüche 9:10.');
       }
     }
   </script>
