@@ -48,11 +48,61 @@
       padding: 5px;
       border-radius: 5px;
     }
+    .contact-section {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      background: #000;
+      color: #fff;
+      padding: 15px;
+      border-radius: 50%;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      transition: all 0.3s ease;
+    }
+    .contact-section:hover {
+      transform: scale(1.1);
+    }
+    .message-form {
+      position: fixed;
+      bottom: 10%;
+      right: 5%;
+      width: 300px;
+      background: rgba(0, 0, 0, 0.8);
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      display: none;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
+    }
+    .message-form input, .message-form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background: #444;
+      border: 1px solid #555;
+      border-radius: 5px;
+      color: #fff;
+    }
+    .message-form button {
+      padding: 10px 20px;
+      background: #f5f5dc;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .message-form button:hover {
+      background: #e0e0e0;
+    }
   </style>
 </head>
 <body>
   <h1>Willkommen in der biblischen Entdeckung</h1>
   
+  <!-- Скрытое сообщение -->
   <div class="hidden-message">
     <div class="message-content">
       Wir sind Nazarener. Kannst du meine wahre Identität enthüllen?
@@ -61,9 +111,24 @@
       Wenn du das Geheimnis findest, wirst du mehr verstehen. Suche weiter.
     </div>
   </div>
-  
+
   <div class="content">
     <p>Hier beginnt deine Reise. Die Bibel ist voll von Geheimnissen und Weisheiten. Bist du bereit, die verborgenen Wahrheiten zu entdecken?</p>
+  </div>
+
+  <!-- Кнопка для отправки сообщения -->
+  <div class="contact-section" onclick="toggleMessageForm()">
+    ✉️
+  </div>
+
+  <!-- Форма для сообщений -->
+  <div class="message-form">
+    <h3>Hinterlasse eine Nachricht</h3>
+    <form action="https://formspree.io/f/xvgararq" method="POST">
+      <input type="email" name="email" placeholder="Deine E-Mail" required>
+      <textarea name="message" placeholder="Deine Nachricht..." rows="5" required></textarea>
+      <button type="submit">Absenden</button>
+    </form>
   </div>
 
   <script>
@@ -74,6 +139,12 @@
         message.classList.add('message-visible'); // текст появляется
       }
     });
+
+    // Функция для отображения и скрытия формы для сообщений
+    function toggleMessageForm() {
+      const form = document.querySelector('.message-form');
+      form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
+    }
   </script>
 </body>
 </html>
