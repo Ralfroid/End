@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Biblische Entdeckung</title>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
   <style>
@@ -13,7 +12,6 @@
       padding: 0;
       background-color: #f5f5f5;
       color: #333;
-      height: 100%;
     }
     h1 {
       font-family: 'Playfair Display', serif;
@@ -39,15 +37,12 @@
     }
     .message-content {
       font-weight: bold;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
     }
     .hint {
-      margin-top: 15px;
-      font-size: 1rem;
-      color: #f5f5dc;
-      background: rgba(0, 0, 0, 0.5);
-      padding: 5px;
-      border-radius: 5px;
+      margin-top: 10px;
+      font-size: 0.9rem;
+      color: #ddd;
     }
     .contact-section {
       position: fixed;
@@ -60,22 +55,17 @@
       font-size: 1.5rem;
       cursor: pointer;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      transition: all 0.3s ease;
-    }
-    .contact-section:hover {
-      transform: scale(1.1);
     }
     .message-form {
       position: fixed;
       bottom: 10%;
       right: 5%;
       width: 300px;
-      background: rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.85);
       color: #fff;
       padding: 20px;
       border-radius: 10px;
       display: none;
-      box-shadow: 0 0 15px rgba(0, 0, 0, 0.7);
     }
     .message-form input, .message-form textarea {
       width: 100%;
@@ -93,18 +83,22 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
-      transition: background 0.3s ease;
-    }
-    .message-form button:hover {
-      background: #e0e0e0;
     }
   </style>
 </head>
 <body>
+
   <h1>Willkommen in der biblischen Entdeckung</h1>
-  
+
+  <div class="content" style="padding: 20px; max-width: 800px; margin: auto;">
+    <p>Hier beginnt deine Reise. Die Bibel ist voll von Geheimnissen und Weisheiten. Bist du bereit, die verborgenen Wahrheiten zu entdecken?</p>
+    
+    <!-- Добавим искусственный скролл -->
+    <div style="height: 1200px;"></div>
+  </div>
+
   <!-- Скрытое сообщение -->
-  <div class="hidden-message">
+  <div class="hidden-message" id="secret">
     <div class="message-content">
       Wir sind Nazarener. Kannst du meine wahre Identität enthüllen?
     </div>
@@ -113,17 +107,11 @@
     </div>
   </div>
 
-  <div class="content">
-    <p>Hier beginnt deine Reise. Die Bibel ist voll von Geheimnissen und Weisheiten. Bist du bereit, die verborgenen Wahrheiten zu entdecken?</p>
-  </div>
+  <!-- Кнопка ✉️ -->
+  <div class="contact-section" onclick="toggleMessageForm()">✉️</div>
 
-  <!-- Кнопка для отправки сообщения -->
-  <div class="contact-section" onclick="toggleMessageForm()">
-    ✉️
-  </div>
-
-  <!-- Форма для сообщений -->
-  <div class="message-form">
+  <!-- Форма -->
+  <div class="message-form" id="messageForm">
     <h3>Hinterlasse eine Nachricht</h3>
     <form action="https://formspree.io/f/xvgararq" method="POST">
       <input type="email" name="email" placeholder="Deine E-Mail" required>
@@ -133,19 +121,20 @@
   </div>
 
   <script>
-    // Показываем скрытое сообщение при прокрутке страницы
-    window.addEventListener('scroll', function() {
-      const message = document.querySelector('.hidden-message');
-      if (window.scrollY > 300) { // когда пользователь прокручивает страницу
-        message.classList.add('message-visible'); // текст появляется
+    // Показать сообщение при прокрутке
+    window.addEventListener('scroll', () => {
+      const message = document.getElementById('secret');
+      if (window.scrollY > 300) {
+        message.classList.add('message-visible');
       }
     });
 
-    // Функция для отображения и скрытия формы для сообщений
+    // Показать/скрыть форму
     function toggleMessageForm() {
-      const form = document.querySelector('.message-form');
-      form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
+      const form = document.getElementById('messageForm');
+      form.style.display = form.style.display === 'block' ? 'none' : 'block';
     }
   </script>
+
 </body>
 </html>
