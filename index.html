@@ -1,109 +1,98 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Biblische Entdeckung</title>
-  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Merriweather', serif;
-      background-color: #f2f2f2;
-      color: #333;
-    }
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 50px 20px;
-    }
-    h1 {
-      font-size: 2.5em;
-      text-align: center;
-      margin-bottom: 10px;
-    }
-    p.intro {
-      text-align: center;
-      font-size: 1.2em;
-      margin-bottom: 50px;
-    }
-    .verse-block {
-      background: #fff;
-      border-left: 6px solid #444;
-      padding: 20px;
-      margin: 20px 0;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .mystery {
-      position: fixed;
-      right: 20px;
-      bottom: 100px;
-      background: #111;
-      color: #fff;
-      padding: 15px 20px;
-      border-radius: 10px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
-    }
-    .feedback-box {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
-      background: #222;
-      color: #fff;
-      padding: 20px;
-      border-radius: 10px;
-      width: 250px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    }
-    .feedback-box input, .feedback-box textarea {
-      width: 100%;
-      margin-top: 10px;
-      padding: 10px;
-      border: none;
-      border-radius: 5px;
-      font-family: inherit;
-    }
-    .feedback-box button {
-      margin-top: 10px;
-      background: #f8f4c4;
-      border: none;
-      padding: 10px;
-      border-radius: 5px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-  </style>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V66K9SDW9C"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-V66K9SDW9C');
-  </script>
-</head>
-<body>
-  <div class="container">
-    <h1>Willkommen in der biblischen Entdeckung</h1>
-    <p class="intro">Hier beginnt deine Reise. Die Bibel ist voll von Geheimnissen und Weisheiten. Bist du bereit, die verborgenen Wahrheiten zu entdecken?</p>
+import { useState } from "react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { motion } from "framer-motion";
 
-    <div class="verse-block">„Denn also hat Gott die Welt geliebt, dass er seinen eingeborenen Sohn gab …“ (Johannes 3,16)</div>
-    <div class="verse-block">„Der Herr ist mein Hirte; mir wird nichts mangeln.“ (Psalm 23,1)</div>
-    <div class="verse-block">„Ich bin der Weg, die Wahrheit und das Leben.“ (Johannes 14,6)</div>
-    <div class="verse-block">„Na, rate mal wer ich bin.“</div>
-  </div>
+import "./globals.css";
 
-  <div class="mystery">Na, rate mal wer ich bin</div>
+export default function BibelEntdeckung() {
+  const [quizStep, setQuizStep] = useState(0);
+  const [email, setEmail] = useState("");
+  const [feedback, setFeedback] = useState("");
 
-  <div class="feedback-box">
-    <form action="https://formspree.io/f/xvgararq" method="POST">
-      <label for="email">Hinterlasse eine Nachricht</label>
-      <input type="email" name="email" placeholder="Deine E-Mail" required>
-      <textarea name="message" rows="4" placeholder="Deine Nachricht..." required></textarea>
-      <button type="submit">Absenden</button>
-    </form>
-  </div>
-</body>
-</html>
+  const quiz = [
+    {
+      frage: "Was ist der erste Satz in der Bibel?",
+      antworten: [
+        "Im Anfang schuf Gott Himmel und Erde.",
+        "Du sollst nicht töten.",
+        "Jesus weinte."
+      ],
+      korrekt: 0
+    },
+    {
+      frage: "Wie viele Bücher hat das Neue Testament?",
+      antworten: ["27", "39", "66"],
+      korrekt: 0
+    }
+  ];
+
+  const nextStep = () => setQuizStep(quizStep + 1);
+
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-yellow-100 to-white p-6 font-serif">
+      <h1 className="text-4xl font-bold text-center mb-6 font-[Merriweather]">
+        Entdecke die Bibel auf eine neue Weise
+      </h1>
+
+      <section className="max-w-xl mx-auto">
+        {quizStep < quiz.length ? (
+          <Card className="mb-6">
+            <CardContent>
+              <h2 className="text-xl mb-4">{quiz[quizStep].frage}</h2>
+              <div className="grid gap-2">
+                {quiz[quizStep].antworten.map((antwort, i) => (
+                  <Button key={i} onClick={nextStep}>{antwort}</Button>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        ) : (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <h2 className="text-2xl mb-4 text-center">
+              Du hast das Quiz abgeschlossen! 🎉
+            </h2>
+          </motion.div>
+        )}
+
+        <div className="mt-12">
+          <h2 className="text-2xl mb-4">Deine Meinung ist uns wichtig</h2>
+          <form
+            action="https://formspree.io/f/xvgararq"
+            method="POST"
+            className="grid gap-4"
+          >
+            <Input
+              type="email"
+              name="email"
+              placeholder="Deine E-Mail"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            <Textarea
+              name="message"
+              placeholder="Dein Feedback"
+              value={feedback}
+              onChange={(e) => setFeedback(e.target.value)}
+              required
+            />
+            <Button type="submit">Absenden</Button>
+          </form>
+        </div>
+      </section>
+
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+      <script>
+        {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-V66K9SDW9C');
+        `}
+      </script>
+    </div>
+  );
+}
