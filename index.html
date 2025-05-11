@@ -1,98 +1,121 @@
-import { useState } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { motion } from "framer-motion";
-
-import "./globals.css";
-
-export default function BibelEntdeckung() {
-  const [quizStep, setQuizStep] = useState(0);
-  const [email, setEmail] = useState("");
-  const [feedback, setFeedback] = useState("");
-
-  const quiz = [
-    {
-      frage: "Was ist der erste Satz in der Bibel?",
-      antworten: [
-        "Im Anfang schuf Gott Himmel und Erde.",
-        "Du sollst nicht töten.",
-        "Jesus weinte."
-      ],
-      korrekt: 0
-    },
-    {
-      frage: "Wie viele Bücher hat das Neue Testament?",
-      antworten: ["27", "39", "66"],
-      korrekt: 0
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Entdecke die Bibel</title>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Merriweather', serif;
+      background: linear-gradient(to bottom, #fef9c3, #ffffff);
+      margin: 0;
+      padding: 2rem;
     }
-  ];
+    h1, h2 {
+      text-align: center;
+    }
+    .quiz, .feedback {
+      max-width: 600px;
+      margin: 2rem auto;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      background: white;
+    }
+    .button {
+      display: block;
+      width: 100%;
+      margin: 0.5rem 0;
+      padding: 0.75rem;
+      background: #facc15;
+      border: none;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      font-size: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Entdecke die Bibel auf eine neue Weise</h1>
+  <div class="quiz" id="quiz-box">
+    <h2 id="frage"></h2>
+    <div id="antworten"></div>
+  </div>
 
-  const nextStep = () => setQuizStep(quizStep + 1);
+  <div class="feedback">
+    <h2>Deine Meinung ist uns wichtig</h2>
+    <form action="https://formspree.io/f/xvgararq" method="POST">
+      <input type="email" name="email" placeholder="Deine E-Mail" required />
+      <textarea name="message" placeholder="Dein Feedback" rows="4" required></textarea>
+      <button type="submit" class="button">Absenden</button>
+    </form>
+  </div>
 
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-yellow-100 to-white p-6 font-serif">
-      <h1 className="text-4xl font-bold text-center mb-6 font-[Merriweather]">
-        Entdecke die Bibel auf eine neue Weise
-      </h1>
+  <script>
+    const quiz = [
+      {
+        frage: "Was ist der erste Satz in der Bibel?",
+        antworten: [
+          "Im Anfang schuf Gott Himmel und Erde.",
+          "Du sollst nicht töten.",
+          "Jesus weinte."
+        ],
+        korrekt: 0
+      },
+      {
+        frage: "Wie viele Bücher hat das Neue Testament?",
+        antworten: ["27", "39", "66"],
+        korrekt: 0
+      }
+    ];
 
-      <section className="max-w-xl mx-auto">
-        {quizStep < quiz.length ? (
-          <Card className="mb-6">
-            <CardContent>
-              <h2 className="text-xl mb-4">{quiz[quizStep].frage}</h2>
-              <div className="grid gap-2">
-                {quiz[quizStep].antworten.map((antwort, i) => (
-                  <Button key={i} onClick={nextStep}>{antwort}</Button>
-                ))}
-              </div>
-            </CardContent>
-          </Card>
-        ) : (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            <h2 className="text-2xl mb-4 text-center">
-              Du hast das Quiz abgeschlossen! 🎉
-            </h2>
-          </motion.div>
-        )}
+    let quizStep = 0;
 
-        <div className="mt-12">
-          <h2 className="text-2xl mb-4">Deine Meinung ist uns wichtig</h2>
-          <form
-            action="https://formspree.io/f/xvgararq"
-            method="POST"
-            className="grid gap-4"
-          >
-            <Input
-              type="email"
-              name="email"
-              placeholder="Deine E-Mail"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
-            <Textarea
-              name="message"
-              placeholder="Dein Feedback"
-              value={feedback}
-              onChange={(e) => setFeedback(e.target.value)}
-              required
-            />
-            <Button type="submit">Absenden</Button>
-          </form>
-        </div>
-      </section>
+    function renderQuiz() {
+      const frageBox = document.getElementById("frage");
+      const antwortenBox = document.getElementById("antworten");
 
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-      <script>
-        {`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', 'G-V66K9SDW9C');
-        `}
-      </script>
-    </div>
-  );
-}
+      if (quizStep >= quiz.length) {
+        frageBox.innerHTML = "Du hast das Quiz abgeschlossen! 🎉";
+        antwortenBox.innerHTML = "";
+        return;
+      }
+
+      const aktuelleFrage = quiz[quizStep];
+      frageBox.textContent = aktuelleFrage.frage;
+      antwortenBox.innerHTML = "";
+
+      aktuelleFrage.antworten.forEach((antwort, i) => {
+        const button = document.createElement("button");
+        button.textContent = antwort;
+        button.className = "button";
+        button.onclick = () => {
+          quizStep++;
+          renderQuiz();
+        };
+        antwortenBox.appendChild(button);
+      });
+    }
+
+    renderQuiz();
+  </script>
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+</body>
+</html>
