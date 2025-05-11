@@ -1,140 +1,109 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Biblische Entdeckung</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Roboto:wght@400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Roboto', sans-serif;
       margin: 0;
-      padding: 0;
-      background-color: #f5f5f5;
+      font-family: 'Merriweather', serif;
+      background-color: #f2f2f2;
       color: #333;
     }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 50px 20px;
+    }
     h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3rem;
+      font-size: 2.5em;
       text-align: center;
-      margin-top: 50px;
+      margin-bottom: 10px;
     }
-    .hidden-message {
+    p.intro {
+      text-align: center;
+      font-size: 1.2em;
+      margin-bottom: 50px;
+    }
+    .verse-block {
+      background: #fff;
+      border-left: 6px solid #444;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .mystery {
       position: fixed;
-      bottom: 20px;
-      left: 20px;
-      font-size: 1.5rem;
-      color: #f5f5dc;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 1s;
-      background: rgba(0, 0, 0, 0.7);
-      padding: 10px;
-      border-radius: 10px;
-    }
-    .message-visible {
-      opacity: 1;
-    }
-    .message-content {
-      font-weight: bold;
-      font-size: 1.3rem;
-    }
-    .hint {
-      margin-top: 10px;
-      font-size: 0.9rem;
-      color: #ddd;
-    }
-    .contact-section {
-      position: fixed;
-      bottom: 10px;
-      right: 10px;
-      background: #000;
+      right: 20px;
+      bottom: 100px;
+      background: #111;
       color: #fff;
-      padding: 15px;
-      border-radius: 50%;
-      font-size: 1.5rem;
+      padding: 15px 20px;
+      border-radius: 10px;
+      font-weight: bold;
       cursor: pointer;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.4);
     }
-    .message-form {
+    .feedback-box {
       position: fixed;
-      bottom: 10%;
-      right: 5%;
-      width: 300px;
-      background: rgba(0, 0, 0, 0.85);
+      right: 20px;
+      bottom: 20px;
+      background: #222;
       color: #fff;
       padding: 20px;
       border-radius: 10px;
-      display: none;
+      width: 250px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
-    .message-form input, .message-form textarea {
+    .feedback-box input, .feedback-box textarea {
       width: 100%;
+      margin-top: 10px;
       padding: 10px;
-      margin: 10px 0;
-      background: #444;
-      border: 1px solid #555;
-      border-radius: 5px;
-      color: #fff;
-    }
-    .message-form button {
-      padding: 10px 20px;
-      background: #f5f5dc;
-      color: #000;
       border: none;
       border-radius: 5px;
+      font-family: inherit;
+    }
+    .feedback-box button {
+      margin-top: 10px;
+      background: #f8f4c4;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      font-weight: bold;
       cursor: pointer;
     }
   </style>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-V66K9SDW9C"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-V66K9SDW9C');
+  </script>
 </head>
 <body>
+  <div class="container">
+    <h1>Willkommen in der biblischen Entdeckung</h1>
+    <p class="intro">Hier beginnt deine Reise. Die Bibel ist voll von Geheimnissen und Weisheiten. Bist du bereit, die verborgenen Wahrheiten zu entdecken?</p>
 
-  <h1>Willkommen in der biblischen Entdeckung</h1>
-
-  <div class="content" style="padding: 20px; max-width: 800px; margin: auto;">
-    <p>Hier beginnt deine Reise. Die Bibel ist voll von Geheimnissen und Weisheiten. Bist du bereit, die verborgenen Wahrheiten zu entdecken?</p>
-    
-    <!-- Добавим искусственный скролл -->
-    <div style="height: 1200px;"></div>
+    <div class="verse-block">„Denn also hat Gott die Welt geliebt, dass er seinen eingeborenen Sohn gab …“ (Johannes 3,16)</div>
+    <div class="verse-block">„Der Herr ist mein Hirte; mir wird nichts mangeln.“ (Psalm 23,1)</div>
+    <div class="verse-block">„Ich bin der Weg, die Wahrheit und das Leben.“ (Johannes 14,6)</div>
+    <div class="verse-block">„Na, rate mal wer ich bin.“</div>
   </div>
 
-  <!-- Скрытое сообщение -->
-  <div class="hidden-message" id="secret">
-    <div class="message-content">
-      Wir sind Nazarener. Kannst du meine wahre Identität enthüllen?
-    </div>
-    <div class="hint">
-      Wenn du das Geheimnis findest, wirst du mehr verstehen. Suche weiter.
-    </div>
-  </div>
+  <div class="mystery">Na, rate mal wer ich bin</div>
 
-  <!-- Кнопка ✉️ -->
-  <div class="contact-section" onclick="toggleMessageForm()">✉️</div>
-
-  <!-- Форма -->
-  <div class="message-form" id="messageForm">
-    <h3>Hinterlasse eine Nachricht</h3>
+  <div class="feedback-box">
     <form action="https://formspree.io/f/xvgararq" method="POST">
+      <label for="email">Hinterlasse eine Nachricht</label>
       <input type="email" name="email" placeholder="Deine E-Mail" required>
-      <textarea name="message" placeholder="Deine Nachricht..." rows="5" required></textarea>
+      <textarea name="message" rows="4" placeholder="Deine Nachricht..." required></textarea>
       <button type="submit">Absenden</button>
     </form>
   </div>
-
-  <script>
-    // Показать сообщение при прокрутке
-    window.addEventListener('scroll', () => {
-      const message = document.getElementById('secret');
-      if (window.scrollY > 300) {
-        message.classList.add('message-visible');
-      }
-    });
-
-    // Показать/скрыть форму
-    function toggleMessageForm() {
-      const form = document.getElementById('messageForm');
-      form.style.display = form.style.display === 'block' ? 'none' : 'block';
-    }
-  </script>
-
 </body>
 </html>
